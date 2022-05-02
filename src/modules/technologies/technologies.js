@@ -1,21 +1,21 @@
 const model = require('./model')
 
 module.exports = {
-    ALL_CATEGORY: async(_, res) => {
+    ADD_TECHNOLOGIES: async(req, res) => {
         try {
-            const category = await model.allcategory()
-            res.send(category)
+            const { name, photo, title, video } = req.body
+            await model.addtechnologies(name, photo, title, video)
+            res.send("OK")
         } catch(err) {
             res.status(500).json({
                 message: err.message
             })
         }
     },
-    ADD_CATEGORY: async(_, res) => {
+    ALL_TECHNOLOGIES: async(_, res) => {
         try {
-            const { name, status_active } = req.body
-            await model.addcategory(name, status_active)
-            res.send("OK")
+            const info = await model.alltechnologies()
+            res.send(info)
         } catch(err) {
             res.status(500).json({
                 message: err.message

@@ -1,21 +1,21 @@
 const model = require('./model')
 
 module.exports = {
-    ALL_CATEGORY: async(_, res) => {
+    MAKE_AN_ORDER: async(req, res) => {
         try {
-            const category = await model.allcategory()
-            res.send(category)
+            const { name, phone, product, count, status_active } = req.body
+            await model.makeanorder(name, phone, product, count, status_active)
+            res.send("OK")
         } catch(err) {
             res.status(500).json({
                 message: err.message
             })
         }
     },
-    ADD_CATEGORY: async(_, res) => {
+    ALL_ORDERS: async(_, res) => {
         try {
-            const { name, status_active } = req.body
-            await model.addcategory(name, status_active)
-            res.send("OK")
+            const info = await model.allorders()
+            res.send(info)
         } catch(err) {
             res.status(500).json({
                 message: err.message

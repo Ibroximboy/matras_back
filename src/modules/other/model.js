@@ -4,7 +4,7 @@ const INFO_TITLES = `
     SELECT
         *
     FROM
-        info_titles
+        info_title
 `
 
 const infotitles = () => fetchAll(INFO_TITLES)
